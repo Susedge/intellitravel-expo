@@ -1,0 +1,53 @@
+# IntelliTravel Setup Commands
+
+## 1. Setup React Native Expo App
+# Create a new Expo project
+npx create-expo-app@latest intellitravel-expo
+
+# Navigate to the project directory
+cd intellitravel-expo
+
+# Install necessary packages
+npm install axios @react-navigation/native @react-navigation/stack expo-secure-store
+npx expo install react-native-screens react-native-safe-area-context
+
+# Start the Expo app
+npx expo start
+
+## 2. Setup Laravel Backend
+# Create Laravel project
+composer create-project laravel/laravel intellitravel-api
+
+# Navigate to Laravel project directory
+cd intellitravel-api
+
+# Create an empty SQLite database file
+touch database/database.sqlite
+
+# Configure .env for SQLite
+# (Edit .env: set DB_CONNECTION=sqlite and DB_DATABASE=/absolute/path/to/intellitravel-api/database/database.sqlite)
+
+# Install Laravel Sanctum for API authentication
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate
+
+# Add Sanctum middleware to app/Http/Kernel.php under 'api' middleware group
+
+# Create AuthController for authentication endpoints
+php artisan make:controller AuthController
+
+# (Implement register method in AuthController and add /api/register route in routes/api.php)
+
+# Allow mass assignment for User model (add fillable fields in app/Models/User.php)
+
+# Run Laravel development server (use your IP address to allow connections from Expo)
+php artisan serve --host=0.0.0.0
+
+## 3. Run the Expo app
+# In the intellitravel-expo directory
+npx expo start
+
+
+php artisan serve --host=0.0.0.0 --port=8000
+php artisan route:list
