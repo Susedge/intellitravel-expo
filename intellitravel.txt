@@ -1,0 +1,224 @@
+INTELLITRAVEL:
+A Smart Local Travel Guide for Foreign and Local Travelers
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+DAN DAROLD A. AGUSTIN
+AVRYLLE LOUISE C. DUQUE
+ALTHER JOHN P. ESTEBAN
+STAPHANIE ANNE S. EUGENIO
+
+
+
+
+
+
+
+
+
+
+
+
+Republic of the Philippines
+TARLAC AGRICULTURAL UNIVERSITY
+Camiling, Tarlac
+December 2025 
+INTRODUCTION
+
+
+Background of the Study
+Travelers often face issues such as delays, overcrowded routes, and a lack of tailored information that meets their specific needs. For tourists, these challenges are further compounded by unfamiliarity with public transportation systems and potential language barriers, adding unnecessary stress to their experience. This study on IntelliTravel explores how such a system can enhance urban mobility, reduce travel time, and create a seamless, enjoyable travel experience for a diverse range of users. Additionally, it examines the technology’s potential impact on urban infrastructure, travel behavior, and overall city dynamics, offering valuable insights for the development of future smart travel solutions.
+IntelliTravel enhances travel efficiency by optimizing routes to minimize travel delays and simplifying public transit navigation, especially for tourists. It supports tourism by offering personalized recommendations for attractions, dining options, and cultural landmarks - thereby boosting local businesses. Designed specifically for map routing and travel behavior in Tarlac, it fills the gaps left by other travel apps. The app also promotes sustainability by encouraging eco-friendly travel practices and modernizing local travel systems, addressing both urban and rural mobility challenges.
+IntelliTravel is a mobile application developed to improve travel experiences for both foreign and local users. By leveraging GPS, traffic data, and user preferences, it provides optimized public transportation routes, walking and rideshare directions, and personalized suggestions for attractions and dining, making navigation easier and more enjoyable.
+Globally, similar apps include Google Maps, Citymapper, and Moovit which provide multimodal transport options, real-time updates, and tailored routes. In the Philippines, apps like Sakay.ph, Angkas, JoyRide, and Grab offer localized transit solutions, including jeepney directions, motorcycle ride-hailing, and real-time traffic-aware navigation.
+The IntelliTravel is an innovative platform to revolutionize how travelers plan and experience their journeys. This app allows users to create personalized profiles through a seamless registration process, enabling them to document and share their travel experiences. Its core features include advanced map routing, GPS navigation, and search tools, making it effortless to explore and navigate destinations. The application goes beyond basic functionality by offering curated travel guides tailored to user preferences and fostering social interaction. Travelers can collaborate in real-time with friends or family, vote on activities, and connect with locals to receive live, authentic recommendations.
+Moreover, the platform supports user-generated content, encouraging travelers to design, rate, and share custom itineraries, creating a rich repository of travel inspiration for others. With multilingual capabilities and integrated real-time weather updates, the app ensures a smooth and accessible experience for users. This capstone project envisions a tool that not only simplifies travel logistics but also enhances cultural immersion and community interaction, catering to the diverse needs of modern travelers.
+The proposed IT solution, IntelliTravel: A Smart Local Travel Guide for Foreign and Local Travelers, is designed to serve the entire province of Tarlac. IntelliTravel addresses common travel challenges by integrating GPS tracking and user preferences to deliver personalized and dynamic travel routes. The application aims to provide both tourists and locals with optimal travel paths while enhancing their journey by suggesting nearby attractions and cultural landmarks.
+
+Significance of the Study
+This study benefits various sectors by enhancing travel experiences through efficient and user-friendly navigation solutions. Local and foreign travelers gain personalized, real-time assistance while local businesses, especially in tourism and hospitality, enjoy increased visibility and economic growth. Communities benefit from boosted tourism and cultural exchange while future researchers and developers can use this study as a foundation for advancing travel technologies. The solution fosters seamless travel, economic development, and continuous innovation.
+For the Department of Tourism and School of Tourism, this IT solution aligns with the institution's mission to advance technology and address real-world challenges. It exemplifies how academic research can lead to meaningful solutions in urban mobility, reinforcing the institution's dedication to innovation, smart city development, and sustainability. Furthermore, it bolsters the institution’s reputation as a leader in technological progress.
+For the local government agencies, transportation authorities, and businesses, they will benefit from IntelliTravel by fostering more efficient and sustainable urban transportation systems. This solution can help alleviate traffic congestion, reduce carbon emissions, and create a more interconnected urban environment. Local businesses, particularly in tourism and hospitality, will also gain visibility by promoting local attractions and services to visitors.
+For the local and foreign travelers, they will enjoy significant advantages through IntelliTravel’s tailored travel routes, which help minimize travel time, alleviate stress, and steer clear of congested areas. Real-time updates, public transit guidance, and personalized recommendations for local attractions will enhance the travel experience. For tourists, the system will simplify navigation in unfamiliar cities, encouraging longer visits. At the same time, local commuters will benefit from a more streamlined and hassle-free travel experience, improving their daily routines.
+
+
+
+
+
+Objectives of the Study
+The main objective of the study is to develop and implement the IntelliTravel, a comprehensive platform designed to enhance travel planning and experiences by integrating user-friendly features such as personalized trip management, real-time collaboration, and local recommendations.
+Specifically, the study aims to achieve the following objectives: 
+a.	to develop a mobile application with the following components and functional requirements:
+a.1 a user-friendly interface to support functionalities like user registration, personalized profiles, trip tracking, and sharing;
+a.2 a robust administrative panel for managing user data, monitoring application activities, and ensuring data security;
+a.3 report generation tools to generate and export activity reports such as user engagement analytics, trip data summaries and content uploads over customizable timeframes;
+a.4 map routing and navigation module with integration of GPS tracking and map-based navigation for seamless travel planning;
+a.5 social collaboration features enabling group trip planning, voting on activities, and sharing itineraries;
+a.6 content management module for user-generated content like itineraries and ratings;
+a.7 tools to provide up-to-date weather information and language options for global accessibility;
+b.	real-time weather and multilingual support tools to evaluate the proposed IT solution based on the ISO/IEC 20510 standard through the following criteria:
+b.1. End Users:
+b.1.1 Usability; Ease of navigation and intuitive design.
+b.1.2 Functionality; Efficiency in performing core travel-related tasks.
+b.	to evaluate the proposed IT solution through model testing on:
+b.1 Accuracy; precision in navigation, recommendations, and system outputs.
+b.2 Time Complexity; efficiency in performing user-requested operations and computations.
+
+Scope and Delimitations
+This project aims to improve the travel experience for both tourists and locals by offering real-time help to navigate or explore the areas and destinations. The researchers will create a mobile application to be used by both tourists and locals. The mobile application will require the use of Internet connection. This will provide personalized travel routes including walking directions, ride-sharing recommendations, and public transportation options provided by the system using GPS and user preferences. It facilitates travelers by cutting down on travel time, steering clear of crowded places and providing customized advice on nearby restaurants, attractions, and cultural landmarks. Intellitravel aims to simplify the difficulties of local travel making it efficient, enjoyable, and tailored to individual needs.
+The "IntelliTravel" project will be constrained by several boundaries to establish clear boundaries for its development. The mobile application will be specifically designed for use within the vicinity of the entire province of Tarlac, concentrating on local destinations and nearby tourist spots within this defined geographic area. It will cater primarily to residents and tourists, excluding individuals who are business travelers or long-term visitors. The app will require an internet connection or mobile data to function, which may limit its usability for users in areas with poor or no connectivity. The effectiveness of its recommendations will depend on the availability and accuracy of real-time GPS, traffic, and public transportation data, which may vary depending on location.
+Furthermore, the app’s compatibility could be restricted to certain devices or operating systems, potentially limiting access for users with different technology. The app’s personalized features will rely on user-provided data, which may not always be complete or accurate, potentially affecting the relevance of recommendations. Additionally, the integration with public transportation services may be confined to specific providers, leaving out lesser-known or non-integrated modes of transport. These delimitations are set to ensure a focused and manageable project scope while acknowledging the potential challenges and limitations.
+
+Definition of Terms
+Accuracy	precision in navigation, recommendations, and system outputs.
+Administrator’s Interface	A dashboard or control panel used by administrators to manage the app’s backend operations, monitor user activity, and ensure data security.
+Content Management System	A module within the app that allows users to upload, manage, and share content such as itineraries, reviews, or recommendations.
+Curated Travel Guides	Pre-designed, theme-based itineraries or suggestions prepared by the application to help users explore destinations efficiently.
+Dynamic Travel Routes	Real-time, adaptable navigation paths that adjust based on current traffic, user preferences, and location data.
+End Users	Individuals who interact with the app to plan and navigate their travels.
+Functionality		Efficiency in performing core travel-related tasks.
+Interoperability	The app’s ability to work seamlessly with other systems or platforms, such as third-party travel apps or GPS devices.
+Map-Based Navigation	Visual routing and travel directions displayed on a digital map within the app.
+Maintainability	The ease with which the app’s software can be updated, fixed, or expanded to include new features.
+Multilingual Support	The app’s capability to offer content and navigation in multiple languages to accommodate users from diverse linguistic backgrounds.
+Personalized Recommendations	Suggestions tailored to individual users based on their travel preferences, location, and previous activities, such as attractions or dining options.
+Personalized Trip Management	Tools that allow users to organize, edit, and save travel plans or itineraries based on their preferences.
+Portability	The app’s ability to function across various devices and operating systems, including Android and iOS.
+Real-Time Weather Updates	Live weather information integrated into the app to help users plan their trips effectively based on current conditions.
+Social Collaboration	Tools within the app that allow users to interact with others, plan group trips, vote on activities, and share itineraries.
+Time Complexity	The time taken by the app to perform user requests or compute travel recommendations, measured as an indicator of system efficiency.
+Travel Behavior	The patterns and preferences of users regarding how they travel, which guide the app’s recommendations and design.
+User Generated Content	Travel-related content such as itineraries, reviews, and ratings, created and shared by app users.
+User Preferences	Customizable settings and data input by users, such as preferred travel modes, dining options, or cultural interests. These preferences guide the app in creating personalized travel recommendations.
+User Registration	The process by which users create an account within the application, enabling access to personalized features such as saved trips and travel history.
+Usability	The ease of use and intuitive design of the app that enables users to navigate, input data, and access features without difficulty.
+ 
+ 
+REVIEW OF RELATED LITERATURE AND STUDIES
+
+
+Advancements in mobile technology have significantly transformed the travel and tourism industry by addressing common challenges faced by tourists. Dadape et al. (2012) pioneered the "Smart Travel Guide," an Android-based mobile application that integrates real-time and location-based information using mashup technology. By combining data from sources like Google Maps and weather services, the app provides tailored recommendations and features such as location tracking, distance calculation, and identification of nearby attractions. These functionalities address issues like limited information access, unfamiliarity with local transportation, and language barriers, ultimately enhancing the travel experience.
+Building on this foundation, Zhang et al. (2021) emphasized the growing reliance of digital consumers on smartphones for travel-related tasks. GPS-enabled apps such as Find My Friends and TripIt, further extend the utility of mobile devices by facilitating group coordination during trips.
+Similarly, Jinendra (2012) highlighted the indispensable role of mobile phones in everyday life, suggesting that location-based systems like the Smart Travel Guide are driving the growth of mobile computing applications. By integrating lightweight mashup technology, Jinendra's proposed system addresses device limitations while offering convenient access to essential travel information.
+More recently, cutting-edge developments in artificial intelligence and machine learning have further advanced travel technology. Ding et al. (2024) introduced an intelligent mobile predictive model for personalized travel itinerary planning, leveraging spatio-temporal graph convolutional networks (STGCN) with attention mechanisms and spatial node embedding. This model surpasses traditional methods by providing dynamic, real-time adjustments to itineraries, improving accuracy and responsiveness. Its personalized recommendations support the digital transformation of the tourism sector, enhancing both efficiency and satisfaction for travelers. Other innovative approaches focus on leveraging user-generated data and geolocation services to refine travel recommendations.
+Chareyron et al. (2011) developed a mobile application that analyzes geolocated photographs from platforms like Flickr and Panoramio, combining user preferences and history to deliver personalized and real-time recommendations. By continuously updating its data, this application ensures relevance and accuracy, enriching the tourist experience.
+Building on these trends, Regin and Rajest (2024) introduced SwiftTrip, an AI-powered travel planning platform that addresses the complexities of modern travel such as last-minute planning and unpredictable weather. SwiftTrip integrates real-time weather forecasts, customized itineraries and tailored packing lists, offering location-specific activity recommendations and preparation tips. Its user-friendly interface and features like email integration for sharing itineraries, establish it as a comprehensive solution for spontaneous and planned travel alike.
+Together, these advancements demonstrate the continuous evolution of travel technology from early location-based systems to sophisticated AI-driven platforms. By addressing a wide range of challenges, these innovations collectively enhance the efficiency, personalization, and overall experience of travel in the digital age.
+Modern travel applications have revolutionized the tourism industry by incorporating a wide range of advanced features that enhance the travel experience.
+Goodchild et al. (2018) emphasized the critical role of GPS navigation systems in such apps, highlighting their ability to reduce travel stress by providing real-time directions and traffic updates. Rajasekhar (2018) built on this, discussing the development of mobile-based smart travel guides that leverage GPS and mobile internet to deliver precise and location-based recommendations tailored for tourists. 
+Beyond individual benefits, Zheng et al. (2011) noted that these systems also assist urban planners by evaluating the effectiveness of infrastructure projects such as new roads and subway lines and identifying potential design issues.
+In addition to navigation, language is a pivotal component of travel apps. Mohamed (2024) underscored the necessity of accurate and efficient translation tools to overcome language barriers, facilitating communication and enhancing connections among travelers, businesses and local communities. Similarly, Montoro (2015) attributed the widespread adoption of mobile technologies to their ability to innovate and provide users with valuable services including those tailored to language and cultural nuances.
+Social connectivity and shared experiences further enrich travel applications. Marianna Sigala (2019) highlighted the transformative power of crowdsourcing in travel decision-making where travelers shared experiences on social media influence others' plans and preferences. This aligns with Buhalis’s (2015) vision of smart tourism destinations which use technology-driven platforms to dynamically connect stakeholders. By enabling real-time information exchange and Big Data analysis, these platforms deliver personalized services that cater to individual tourist preferences.
+Affordability and accessibility also play significant roles in travel app development. Pozi (2013) introduced a mobile application aimed at supporting budget-conscious tourists in Malaysia by providing detailed information on destinations, accommodations and transportation - thereby reducing costs and enriching their overall travel experience. Similarly, Sharma (2018) integrates GPS and machine learning to offer highly personalized recommendations, adapting to users' real-time locations and preferences.
+Weather insights and proactive planning are another cornerstone of effective travel applications. Patkar et al. (2024) present "Smart Weather Gov," an Android application that employs advanced statistical techniques including linear regression and decision tree regression to deliver accurate short- and long-term weather forecasts. By offering customizable preferences and proactive notifications, this app equips users to make informed decisions and prepare for adverse weather conditions. Modern travel applications combine navigation, language tools, social connectivity, affordability and weather insights to provide comprehensive and user-centric solutions. These features collectively address the diverse needs of travelers, making travel more accessible, efficient and enjoyable.
+
+In comparing the "Tourist Guide" Android application proposed by Shah et al. (2020) with the "IntelliTravel," several similarities and differences emerge. Both apps aim to enhance the travel experience through technological innovation, but their approaches and scopes differ. The "Tourist Guide" app focuses on localized assistance for exploring Sikkim, offering features such as language options and multimedia elements like voice clips to act as a virtual guide for specific sites (Shah et al., 2020). In contrast, the "IntelliTravel" adopts a more comprehensive approach, integrating real-time GPS tracking, social collaboration features and user-generated content for personalized and interactive travel planning.
+While both applications leverage multimedia and interactive functionalities, the "Tourist Guide" app emphasizes navigation and cultural information tailored to a single region, offering detailed cultural immersion. Meanwhile, the "IntelliTravel" provides global usability with advanced features, including social collaboration, real-time weather updates, and itinerary sharing, making it a versatile tool for diverse travel needs, including group planning and live recommendations. The "Tourist Guide" app is ideal for tourists seeking an in-depth exploration of Sikkim’s cultural and linguistic landscape (Shah et al., 2020). On the other hand, the "IntelliTravell" serves as a comprehensive travel ecosystem, catering to broader, interconnected travel experiences. Together, these applications demonstrate the evolving role of mobile technology in tourism, from offering region-specific guides to supporting dynamic, global travel solutions.	
+CityMapper - the ultimate transport app. (n.d.). Citymapper. https://citymapper.com/
+The most popular urban mobility app in Manila. (n.d.). Moovit. https://moovitapp.com/manila-1022/poi/en
+Super-Admin, & Super-Admin. (2022, June 7). JoyRide PH: Book MC taxi, car, and delivery - JoyRide PH. JoyRide PH. https://joyride.com.ph/
+ 
+METHODOLOGY
+
+
+System Development Methodology
+An overview of the methodology used in the study and development of the IT solution is provided. The researchers adopted the Agile Development Model to guide the phases of their work. This methodology is recognized for its adaptability and efficiency, emphasizing iterative and incremental processes. It allows the design to remain flexible and evolve as new ideas and improvements are introduced in each cycle. After every iteration, functional prototypes are presented to end users, whose feedback shapes the subsequent development phase. This cycle continues until the final product fully aligns with the project's objectives and specific requirements.
+This study used the Agile methodology in developing a mobile application. The methodology comprises five main stages: (1) brainstorm, (2) design, (3) development, (4) quality assurance, and (5) deployment. The process emphasizes task analysis and design activities, followed by implementation and testing. Finally, it concludes with the release phase, where the developed application is deployed.
+Agile offers several key benefits, including faster development timelines, consistent delivery of value to clients, and the flexibility to accommodate changing needs. The researchers chose this approach because it aligns well with projects requiring extensive research, prototyping, and iterative design, particularly when working within a constrained timeframe.
+ 
+Figure 1.  Model of Agile Methodology
+
+Brainstorm. In this phase, the team collaborated to gather and analyze user requirements. This step involved brainstorming sessions with stakeholders to understand the project goals, challenges, and key deliverables. It ensures that the team has a clear vision of what needs to be achieved before proceeding to the next stages.
+Design. Once the requirements were established, the design phase focused on creating prototypes and design documents. These served as blueprints for the development process. The prototypes helped visualize the final product and allow for feedback early in the process, ensuring that the design aligns with user expectations.
+Development. This phase involved coding and building the actual product based on the design specifications. The development process is iterative, allowing for incremental progress and continuous refinement. Feedback from earlier iterations is incorporated to enhance the product's functionality and usability.
+Quality Assurance. Testing and quality assurance are crucial in this phase to ensure that the product meets the desired standards. The team conducted various tests, including functional, performance and usability testing to identify and resolve any issues. This step ensured that the product is reliable and ready for deployment.
+
+Data Gathering Procedures
+Observation. This method was employed to understand user interactions with existing travel applications. By discretely observing travelers in Tarlac's transport hubs, the research identified common challenges such as navigation inefficiencies, overcrowding and information gaps. The insights helped shape features like optimized route planning and real-time updates.
+Literature Survey. Literature Survey provided a foundation for designing IntelliTravel by synthesizing findings from various studies. It helped refine the app’s features, ensure it meets user expectations and address the challenges faced by local and foreign travelers. Additionally, it helped identify gaps in current technology, providing a competitive advantage for IntelliTravel in offering unique, tailored travel experiences.
+Ethnography. A detailed ethnographic study was conducted focusing on the travel habits and preferences of both local travelers and tourists. Data were gathered through a blend of direct engagement and analysis of user behaviors in their natural settings, emphasizing cultural and contextual elements that influence travel decisions.
+System Design
+ 
+Figure 2. System Architectural Design 
+The IntelliTravel system architecture is designed as a comprehensive three-tier structure that efficiently handles all aspects of the travel application. At the front end, the mobile app serves as the client-side interface where both local and foreign users interact with the system. This mobile interface acts as the primary point of contact, providing users with an intuitive way to access all features and functionalities of the application.
+Behind the user interface lies the Web Server which operates as the system's core processing unit. This server is divided into three distinct layers, each serving a specific purpose. The Presentation Layer manages the visual aspects and user interaction elements, handling multiple languages, map displays and weather information presentation. The Business Layer functions as the system's logical center, processing user profiles, managing trip details, facilitating group planning features and running the search and recommendation algorithms. The Data Layer acts as an intermediary between the business logic and permanent storage, managing data organization and real-time updates.
+The database server forms the backbone of the system's data management. It permanently stores all user information, trip details and system data using a structured framework. This framework employs the Model-View-Controller (MVC) pattern to ensure efficient data organization and retrieval. Supporting the main system are various external services that integrate seamlessly with the application. These services include map APIs for navigation, weather services for real-time updates, translation tools for language support, and social media platforms for sharing capabilities. The entire architecture is wrapped in a comprehensive security layer that protects user data and ensures secure operations across all system components.
+
+ 
+Figure 3. Entity Relationship Design for System Functions
+The provided entity-relationship design represents a database structure designed for a travel planning or recommendation system. At the core is the Users table which stores user information such as personal details, account type (local or foreign) and contact information. Each user can have preferences, capturing their travel style, budget, preferred activities and dietary restrictions. Users can also create or receive trips which are collections of itineraries and they can write recommendations to share with others.
+Trips consist of various itinerary entries which detail daily plans and activities. Each itinerary includes one or more activities, representing specific events or tasks and these activities are associated with places which provide details like location, category and operational hours. Activities can also be influenced by WeatherData which records weather conditions for specific locations and times.
+Users can join trips as TripMembers, assuming roles like admin or member. The system also allows users to leave reviews on activities, enabling feedback and community-driven insights. This interconnected structure ensures seamless travel planning and collaboration while catering to user preferences and real-time conditions.
+
+
+Tools used in the Development
+Hardware. This section presents the devices and equipment utilized during the development and implementation phases of the IntelliTravel project. The minimum and recommended specifications, along with the actual devices used, are provided in the Table 1.
+Table 1. Hardware Specifications for IntelliTravel Development.
+HARDWARE COMPONENTS	MINIMUM SPECIFICATION	RECOMMENDED SPECIFICATION
+Development Computer	Intel core i5, 8gb RAM, 
+256gb SSD	Intel Core i7, 16 GB RAM, 512 GB SSD
+Testing Smartphone	Android 8.0, 2gb RAM, 
+16gb Storage	Android 11.0, 4gb RAM, 64gb Storage
+Additional Peripherals	Basic Keyboard and Mouse	Ergonomic Keyboard and Wireless Mouse
+Network Setup	5mbps Internet Connection	20mbps Internet
+Connection
+
+
+Software. This section lists the software tools utilized in the development of the IntelliTravel project. It includes the tools used for the front-end and back-end development as well as additional technologies for data processing and management.
+•	Data Mining Tools. Python libraries were used for data analysis and making predictions.
+•	Programming Language. Java was the programming language used for building the app’s core functions.
+•	Scripting Language. JavaScript was the scripting language used for adding dynamic features and connecting third-party APIs.
+•	DBMS. MySQL was used as the database software for storing structured data like user profiles and preferences.
+Evaluation
+Scale to be Used in the Evaluation. This section presents the evaluation scale and how it is interpreted. The assessment was conducted based on Weighted Mean of evaluation responses analyzed through the Likert Scale. The Likert Scale is a widely used tool for evaluating attitudes, perceptions and satisfaction levels, typically offering response options ranging from Very Poor to Excellent.
+To determine the overall evaluation score, the Weighted Mean method was applied, assigning designated weights to each response category. The final outcomes were then interpreted according to the following scale:
+Table 2.  Interpretation of Evaluation Result.		
+FIRST	LEVEL HEADING
+4.50 – 5.00	Excellent
+3.50 – 4.49	Very Good
+2.50 – 3.49	Good
+1.50 – 2.49	Poor
+0.00 – 1.49	Very Poor
+
+The weighted average was analyzed using Table 2 to provide a corresponding verbal interpretation. Evaluators rated the system based on a specified criterion using a scale from 1 to 5. A rating of 5 is interpreted as Excellent, 4 as Very Good, 3 as Good, 2 as Poor and 1 as Very Poor. The Weighted Mean method was applied to determine the overall evaluation score, ensuring accurate assessment of attitudes, perceptions and satisfaction level.
+Respondents to the Evaluation. The respondents were identified through purposive sampling based on their familiarity with travel-related applications and their potential to provide valuable feedback regarding the usability and functionality of the system. The research was conducted within Tarlac Province, particularly in Tarlac City. The evaluation of IntelliTravel: A Smart Local Travel Guide for Foreign and Local Travelers was conducted among selected travelers within Tarlac. 
+
+Validation Testing
+Data. The data used in the evaluation consisted of user interaction logs, survey responses and system performance metrics. Data preparation involved:
+•	Data Cleaning – Removing inconsistent or irrelevant responses.
+•	Feature Selection – Identifying key variables related to system usability, accuracy, and user satisfaction.
+•	Data Categorization – Structuring the data into relevant categories for analysis.
+The survey responses were collected from the identified evaluators using Likert-scale questionnaires. System performance data was recorded through backend logs to measure loading times, response accuracy, and user engagement levels.
+
+
+
+
+Table 3. Data Dictionary
+ATTTRIBUTE NAME	INPUT MASK	DATA TYPE	SAMPLE INPUT	DESCRIPTION
+User_ID	N/A	Integer	1001	Unique identifier for users.
+Name	A-Z	String	John Doe	Full name of the user.
+Location	A-Z	String	Tarlac City	User’s current Location
+GPS_Coordinates	N/A	Float	15.4821, 120.596	Latitude ang longitude of the user
+Travel History	N/A	String 	Manila, Cebu	Previously visited places
+Rating	1-5	Integer	4	User rating for the application
+				
+
+Accuracy. To assess the accuracy of the IntelliTravel application, the researchers evaluated GPS precision, route optimization efficiency and search functionality correctness. Accuracy was calculated using:
+System performance testing was conducted using test cases that measured:
+•	Search Algorithm Efficiency – The accuracy of search results when users query locations.
+•	Navigation Precision – The correctness of suggested travel routes.
+•	User Feedback Consistency – The reliability of user-reported experiences compared to actual system outputs.
+Based on the evaluation, the IntelliTravel system demonstrated high accuracy in search results and routing efficiency, making it a reliable travel guide for both local and foreign travelers in Tarlac.	 
+

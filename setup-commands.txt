@@ -1,3 +1,6 @@
+Using: expo, typescript, sqlite db
+
+
 # IntelliTravel Setup Commands
 
 ## 1. Setup React Native Expo App
@@ -52,6 +55,23 @@ npx expo start
 php artisan serve --host=0.0.0.0 --port=8000
 php artisan route:list
 
-npx 
-eas build --platform android --profile production
+## 4. Setup EAS (Expo Application Services)
+# Install EAS CLI globally
+npm install -g eas-cli
+
+# Log in to your Expo account
+eas login
+
+# Initialize EAS in your project
+eas build:configure
+
+# Optional: Install EAS build dependencies locally
+npm install --save-dev @expo/eas-build-job
+
+# Build for Android with preview profile
+npx eas build --platform android --profile preview
+
+# Build for Android with production profile
+npx eas build --platform android --profile production
+
 

@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator, Image, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { router } from 'expo-router';
-import { authAPI } from '../../services/api';
+import { authAPI, setAuthToken } from '../../services/api';
+import * as SecureStore from 'expo-secure-store'; 
+import { saveAuthData } from '../../services/auth';
+import { useAuth } from '@/context/AuthContext'; // Import the useAuth hook
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth(); // Get the login function from AuthContext
 
   const handleLogin = async () => {
     try {
@@ -20,15 +24,17 @@ export default function LoginScreen() {
 
       const response = await authAPI.login({ email, password });
       
-      // Store token in secure storage (you'd need to implement this)
-      // await SecureStore.setItemAsync('userToken', response.token);
+      // Store token and user data in secure storage
+      await saveAuthData(response.token, response.user);
       
-      Alert.alert('Success', 'You have successfully logged in!', [
-        { 
-          text: 'OK', 
-          onPress: () => router.replace('/') 
-        }
-      ]);
+      // Set the auth token for future API requests
+      setAuthToken(response.token);
+      
+      // Update the auth context state with both token and user data
+      login(response.token, response.user);
+      
+      // Navigate to dashboard
+      router.replace('/(app)/dashboard');
     } catch (error: any) {
       console.error('Login error:', error);
       const message = error.response?.data?.message || 'Invalid credentials. Please try again.';
