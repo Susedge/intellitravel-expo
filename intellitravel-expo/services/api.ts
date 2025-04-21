@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Create API client
-const API_URL = 'http://192.168.0.115:8000/api';
+const API_URL = 'https://0058-124-217-85-69.ngrok-free.app/api';
 
 const apiClient = axios.create({
   baseURL: API_URL,
