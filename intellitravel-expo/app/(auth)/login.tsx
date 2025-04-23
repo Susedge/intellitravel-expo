@@ -34,7 +34,7 @@ export default function LoginScreen() {
       login(response.token, response.user);
       
       // Navigate to dashboard
-      router.replace('/(app)/dashboard');
+      router.replace('/(tabs)/map');
     } catch (error: any) {
       console.error('Login error:', error);
       const message = error.response?.data?.message || 'Invalid credentials. Please try again.';

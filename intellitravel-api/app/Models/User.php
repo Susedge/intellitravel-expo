@@ -60,4 +60,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+
+    /**
+     * The groups this user belongs to.
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_user')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
+
+    /**
+     * The group messages sent by this user.
+     */
+    public function groupMessages()
+    {
+        return $this->hasMany(GroupMessage::class);
+    }
 }

@@ -147,7 +147,6 @@ const renderMessageItem = ({ item, index }: { item: Message, index: number }) =>
     );
   };
   
-  
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

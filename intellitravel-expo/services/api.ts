@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Create API client
-const API_URL = 'https://9849-136-158-119-30.ngrok-free.app/api';
+const API_URL = 'https://c4x2t9vybus7.share.zrok.io/api/';
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -74,6 +74,35 @@ export interface Conversation {
   unread_count: number;
 }
 
+// --- Group Chat Interfaces ---
+export interface GroupChat {
+  id: number;
+  name: string;
+  description?: string;
+  created_at: string;
+  updated_at: string;
+  avatar?: string;
+  members_count: number;
+  created_by: number;
+  unread_count: number;
+  last_message?: Message;
+}
+
+export interface GroupMember {
+  id: number;
+  user_id: number;
+  group_id: number;
+  role: 'admin' | 'member';
+  joined_at: string;
+  user: User;
+}
+
+export interface CreateGroupData {
+  name: string;
+  description?: string;
+  member_ids: number[];
+}
+
 // Authentication API functions
 export const authAPI = {
   // Register new user
@@ -138,6 +167,77 @@ export const chatAPI = {
   getUserDetails: async (userId: number) => {
     const response = await apiClient.get(`/users/${userId}`);
     return response.data;
+  },
+
+  // --- Group Chat API functions ---
+
+  // Get all groups the current user is a member of
+  getGroups: async () => {
+    const response = await apiClient.get('/groups');
+    return response.data;
+  },
+
+  // Get group details
+  getGroupDetails: async (groupId: number) => {
+    const response = await apiClient.get(`/groups/${groupId}`);
+    return response.data;
+  },
+
+  // Create a new group
+  createGroup: async (data: CreateGroupData) => {
+    const response = await apiClient.post('/groups', data);
+    return response.data;
+  },
+
+  // Update group (not in routes yet, but stubbed)
+  updateGroup: async (groupId: number, data: Partial<CreateGroupData>) => {
+    const response = await apiClient.put(`/groups/${groupId}`, data);
+    return response.data;
+  },
+
+  // Get group members
+  getGroupMembers: async (groupId: number) => {
+    const response = await apiClient.get(`/groups/${groupId}/members`);
+    return response.data;
+  },
+
+  // Add a member to a group
+  addGroupMember: async (groupId: number, userId: number) => {
+    const response = await apiClient.post(`/groups/${groupId}/members`, { user_id: userId });
+    return response.data;
+  },
+
+  // Remove a member from a group
+  removeGroupMember: async (groupId: number, userId: number) => {
+    const response = await apiClient.delete(`/groups/${groupId}/members/${userId}`);
+    return response.data;
+  },
+
+  // Leave a group
+  leaveGroup: async (groupId: number) => {
+    const response = await apiClient.post(`/groups/${groupId}/leave`);
+    return response.data;
+  },
+
+  // Get messages in a group
+  getGroupMessages: async (groupId: number) => {
+    const response = await apiClient.get(`/groups/${groupId}/messages`);
+    return response.data;
+  },
+
+  // Send a message to a group
+  sendGroupMessage: async (groupId: number, content: string) => {
+    const response = await apiClient.post('/group-messages', {
+      group_id: groupId,
+      content
+    });
+    return response.data;
+  },
+
+  // Mark group messages as read (not implemented in backend yet, stubbed)
+  markGroupMessagesAsRead: async (groupId: number) => {
+    const response = await apiClient.post(`/groups/${groupId}/messages/read`);
+    return response.data;
   }
 };
 
@@ -147,6 +247,120 @@ export const setAuthToken = (token: string) => {
     apiClient.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   } else {
     delete apiClient.defaults.headers.common['Authorization'];
+  }
+};
+
+// Location interfaces
+export interface Location {
+  id: number; // Changed from id?: number to id: number for created locations
+  name: string;
+  latitude: number;
+  longitude: number;
+  description?: string;
+  type?: string;
+  created_at?: string;
+  updated_at?: string;
+  average_rating?: number;
+  visit_count?: number;
+}
+
+export interface LocationCreationData {
+  name: string;
+  latitude: number;
+  longitude: number;
+  description?: string;
+  type?: string;
+}
+
+export interface LocationVisit {
+  latitude: number;
+  longitude: number;
+  name: string;
+  type: string;
+  user_id?: number;
+}
+
+export interface LocationRating {
+  location_id: number;
+  rating: number;
+  comment?: string;
+}
+
+// Location API functions
+export const locationsAPI = {
+  // Get all locations
+  getLocations: async (): Promise<Location[]> => {
+    const response = await apiClient.get<Location[]>('/locations');
+    return response.data;
+  },
+
+  // Get a specific location details
+  getLocation: async (id: number): Promise<Location> => {
+    const response = await apiClient.get<Location>(`/locations/${id}`);
+    return response.data;
+  },
+
+  // Search locations by coordinates
+  searchNearby: async (latitude: number, longitude: number, radius: number = 5): Promise<Location[]> => {
+    const response = await apiClient.get<Location[]>(`/locations/nearby`, {
+      params: { lat: latitude, lng: longitude, radius }
+    });
+    return response.data;
+  },
+
+  // Log a location visit
+  logVisit: async (data: LocationVisit): Promise<any> => {
+    try {
+      console.log("API logVisit called with data:", data);
+      console.log("API headers:", apiClient.defaults.headers);
+      console.log("API baseURL:", apiClient.defaults.baseURL);
+      
+      const response = await apiClient.post('/locations/visits', data);
+      console.log("API logVisit success response:", response.data);
+      return response.data;
+    } catch (error: any) {
+      console.error("API logVisit error:", error);
+      
+      // Log more detailed error information
+      if (error.response) {
+        // The server responded with a status code outside of 2xx range
+        console.error("Response error data:", error.response.data);
+        console.error("Response error status:", error.response.status);
+        console.error("Response error headers:", error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error("Request error:", error.request);
+      } else {
+        // Something else happened in setting up the request
+        console.error("Error message:", error.message);
+      }
+      
+      // Rethrow the error to be caught by the calling code
+      throw error;
+    }
+  },  
+  // Rate a location
+  rateLocation: async (data: LocationRating): Promise<any> => {
+    const response = await apiClient.post('/locations/ratings', data);
+    return response.data;
+  },
+
+  // Get location analytics
+  getLocationAnalytics: async (id: number): Promise<any> => {
+    const response = await apiClient.get(`/locations/${id}/analytics`);
+    return response.data;
+  },
+
+  // Create a new location
+  createLocation: async (data: LocationCreationData): Promise<Location> => {
+    const response = await apiClient.post<Location>('/locations', data);
+    return response.data;
+  },
+
+  // Update a location
+  updateLocation: async (id: number, data: Partial<LocationCreationData>): Promise<Location> => {
+    const response = await apiClient.put<Location>(`/locations/${id}`, data);
+    return response.data;
   }
 };
 

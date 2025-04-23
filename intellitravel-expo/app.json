@@ -16,12 +16,21 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.susedge3.intellitravelexpo"
+      "package": "com.susedge3.intellitravelexpo",
+      "config": {
+        "networkSecurityConfig": "xml/network_security_config"
+      }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "android": {
+        "permissions": [
+          "ACCESS_COARSE_LOCATION",
+          "ACCESS_FINE_LOCATION"
+        ]
+      }
     },
     "plugins": [
       "expo-router",
