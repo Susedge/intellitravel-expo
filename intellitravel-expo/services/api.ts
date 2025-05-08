@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// Create API client
 const API_URL = 'https://c4x2t9vybus7.share.zrok.io/api/';
+//const API_URL = 'http://192.168.100.4:8080/api';
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -361,6 +361,148 @@ export const locationsAPI = {
   updateLocation: async (id: number, data: Partial<LocationCreationData>): Promise<Location> => {
     const response = await apiClient.put<Location>(`/locations/${id}`, data);
     return response.data;
+  }
+};
+
+// Add these new interfaces for establishment data
+export interface Establishment {
+  id: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  type: string;
+  address?: string;
+  rating?: number;
+  photo_url?: string;
+  distance?: number;
+}
+
+export interface EstablishmentSearchParams {
+  latitude: number;
+  longitude: number;
+  radius?: number;  // in meters
+  type?: string;    // restaurant, hotel, attraction, etc.
+  keyword?: string; // search term
+  limit?: number;   // max results
+}
+
+// Add a new section for external establishment API
+export const establishmentsAPI = {
+  // Search for nearby establishments
+  searchEstablishments: async (params: EstablishmentSearchParams): Promise<Establishment[]> => {
+    // We're using OpenTripMap API as it's free and doesn't require a credit card
+    // Note: In production, you should move the API key to an environment variable
+    const OPENTRIPMAP_API_KEY = '5ae2e3f221c38a28845f05b6a97838eb7841e58adf12536688057374';
+    const BASE_URL = 'https://api.opentripmap.com/0.1/en/places';
+    
+    try {
+      // First get list of places
+      const radius = params.radius || 1000; // Default 1km
+      const limit = params.limit || 20;
+      const searchURL = `${BASE_URL}/radius?radius=${radius}&lon=${params.longitude}&lat=${params.latitude}&limit=${limit}&apikey=${OPENTRIPMAP_API_KEY}`;
+      
+      const response = await axios.get(searchURL);
+      
+      // Process results into our Establishment format
+      const establishments: Establishment[] = [];
+      
+      if (response.data && response.data.features) {
+        // Filter by keyword if provided
+        const features = params.keyword 
+          ? response.data.features.filter((f: any) => 
+              f.properties.name && f.properties.name.toLowerCase().includes(params.keyword!.toLowerCase()))
+          : response.data.features;
+        
+        // Filter by type if provided
+        const filteredFeatures = params.type
+          ? features.filter((f: any) => f.properties.kinds && f.properties.kinds.includes(params.type))
+          : features;
+          
+        // Get details for each place
+        for (const feature of filteredFeatures.slice(0, limit)) {
+          if (feature.properties.name) { // Only include places with names
+            const place = {
+              id: feature.id,
+              name: feature.properties.name,
+              latitude: feature.geometry.coordinates[1],
+              longitude: feature.geometry.coordinates[0],
+              type: feature.properties.kinds ? feature.properties.kinds.split(',')[0] : 'place',
+              distance: feature.properties.dist,
+              rating: feature.properties.rate,
+            };
+            
+            establishments.push(place);
+          }
+        }
+      }
+      
+      return establishments;
+    } catch (error) {
+      console.error('Error searching establishments:', error);
+      throw error;
+    }
+  },
+  
+  // Get details for a specific establishment
+  getEstablishmentDetails: async (id: string): Promise<any> => {
+    const OPENTRIPMAP_API_KEY = '5ae2e3f221c38a28845f05b6a97838eb7841e58adf12536688057374';
+    const url = `https://api.opentripmap.com/0.1/en/places/xid/${id}?apikey=${OPENTRIPMAP_API_KEY}`;
+    
+    try {
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error('Error getting establishment details:', error);
+      throw error;
+    }
+  },
+  
+  // Alternative API: Using Overpass for OpenStreetMap data (as backup)
+  searchOSMEstablishments: async (params: EstablishmentSearchParams): Promise<Establishment[]> => {
+    try {
+      const radius = params.radius || 1000; // Default 1km
+      const typeTag = params.type || 'amenity';
+      const typeValue = params.keyword || '';
+      
+      // Build Overpass query
+      const overpassQuery = `
+        [out:json];
+        (
+          node["${typeTag}"${typeValue ? `="${typeValue}"` : ''}](around:${radius},${params.latitude},${params.longitude});
+        );
+        out body;
+      `;
+      
+      const response = await axios.post(
+        'https://overpass-api.de/api/interpreter', 
+        overpassQuery,
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+      );
+      
+      const establishments: Establishment[] = [];
+      
+      if (response.data && response.data.elements) {
+        response.data.elements.forEach((element: any) => {
+          if (element.tags && element.tags.name) {
+            establishments.push({
+              id: `osm${element.id}`,
+              name: element.tags.name,
+              latitude: element.lat,
+              longitude: element.lon,
+              type: element.tags[typeTag] || typeTag,
+              address: element.tags['addr:street'] 
+                ? `${element.tags['addr:housenumber'] || ''} ${element.tags['addr:street']}, ${element.tags['addr:city'] || ''}` 
+                : undefined
+            });
+          }
+        });
+      }
+      
+      return establishments;
+    } catch (error) {
+      console.error('Error searching OSM establishments:', error);
+      throw error;
+    }
   }
 };
 

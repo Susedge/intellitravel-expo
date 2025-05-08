@@ -1,16 +1,3 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { WebView } from 'react-native-webview';
-import { router } from 'expo-router';
-import * as Location from 'expo-location';
-
-export default function MapScreen() {
-  const webViewRef = useRef<WebView>(null);
-  const [location, setLocation] = useState<{latitude: number, longitude: number} | null>(null);
-  const [locationErrorMsg, setLocationErrorMsg] = useState<string | null>(null);
-
-  // HTML content from map.html embedded directly
-  const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,12 +166,12 @@ export default function MapScreen() {
       const marker = L.marker([lat, lng], {icon}).addTo(map);
       
       // Create the popup content with a rating button
-      const popupContent = \`
+      const popupContent = `
         <div style="min-width: 200px; padding: 5px; text-align: center;">
-          <h3 style="margin: 0 0 8px 0; font-size: 16px;">\${name || 'Unnamed Location'}</h3>
-          \${description ? \`<p style="margin: 0 0 10px 0; font-size: 13px;">\${description}</p>\` : ''}
+          <h3 style="margin: 0 0 8px 0; font-size: 16px;">${name || 'Unnamed Location'}</h3>
+          ${description ? `<p style="margin: 0 0 10px 0; font-size: 13px;">${description}</p>` : ''}
           <button 
-            onclick="openLocationDetail(\${lat}, \${lng}, '\${name.replace(/'/g, "\\'")}')"
+            onclick="openLocationDetail(${lat}, ${lng}, '${name.replace(/'/g, "\\'")}')"
             style="background: #5e72e4; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; width: 100%; transition: all 0.2s ease;"
             onmouseover="this.style.backgroundColor='#4756ca'"
             onmouseout="this.style.backgroundColor='#5e72e4'"
@@ -192,14 +179,14 @@ export default function MapScreen() {
             View Details & Rate Location
           </button>
         </div>
-      \`;
+      `;
       
       marker.bindPopup(popupContent);
       return marker;
     }
     
     // Function to open location detail (rating) page
-        function openLocationDetail(lat, lng, name) {
+    function openLocationDetail(lat, lng, name) {
       if (window.ReactNativeWebView) {
         // Send location data to React Native
         window.ReactNativeWebView.postMessage(JSON.stringify({
@@ -301,7 +288,7 @@ export default function MapScreen() {
       dropdownElement.innerHTML = '<div class="autocomplete-item">Loading suggestions...</div>';
       dropdownElement.style.display = 'block';
       
-      const url = \`https://api.geoapify.com/v1/geocode/autocomplete?text=\${encodeURIComponent(text)}&apiKey=\${GEOAPIFY_KEY}\`;
+      const url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${encodeURIComponent(text)}&apiKey=${GEOAPIFY_KEY}`;
       const requestOptions = { method: 'GET' };
       
       fetch(url, requestOptions)
@@ -326,7 +313,7 @@ export default function MapScreen() {
                 secondaryDetails = parts.join(', ');
               }
               
-              item.innerHTML = \`<span class="autocomplete-main">\${mainName}</span>\${secondaryDetails ? \`<span class="autocomplete-secondary">\${secondaryDetails}</span>\` : ''}\`;
+              item.innerHTML = `<span class="autocomplete-main">${mainName}</span>${secondaryDetails ? `<span class="autocomplete-secondary">${secondaryDetails}</span>` : ''}`;
               
               item.addEventListener('click', () => {
                 if (feature.geometry && feature.geometry.coordinates) {
@@ -353,7 +340,7 @@ export default function MapScreen() {
         })
         .catch(error => {
           console.error('Autocomplete error:', error);
-          dropdownElement.innerHTML = \`<div class="autocomplete-item">Error: \${error.message}</div>\`;
+          dropdownElement.innerHTML = `<div class="autocomplete-item">Error: ${error.message}</div>`;
         });
     }
 
@@ -383,13 +370,13 @@ export default function MapScreen() {
         
         // Make the popup content more useful
         const popupContent = isCurrentLocation ? 
-          \`<b>My location (start)</b><br>Latitude: \${lat.toFixed(5)}<br>Longitude: \${lng.toFixed(5)}\` : 
-          \`<b>Start point</b><br>Latitude: \${lat.toFixed(5)}<br>Longitude: \${lng.toFixed(5)}\`;
+          `<b>My location (start)</b><br>Latitude: ${lat.toFixed(5)}<br>Longitude: ${lng.toFixed(5)}` : 
+          `<b>Start point</b><br>Latitude: ${lat.toFixed(5)}<br>Longitude: ${lng.toFixed(5)}`;
         startMarker.bindPopup(popupContent).openPopup();
         
         startMarker.on('dragend', () => {
           const pos = startMarker.getLatLng();
-          startInput.value = \`\${pos.lat.toFixed(5)},\${pos.lng.toFixed(5)}\`;
+          startInput.value = `${pos.lat.toFixed(5)},${pos.lng.toFixed(5)}`;
           isUsingCurrentLocation = false;
           updateButtons();
         });
@@ -402,13 +389,13 @@ export default function MapScreen() {
         
         // Make the popup content more useful
         const popupContent = isCurrentLocation ? 
-          \`<b>My location (destination)</b><br>Latitude: \${lat.toFixed(5)}<br>Longitude: \${lng.toFixed(5)}\` : 
-          \`<b>Destination</b><br>Latitude: \${lat.toFixed(5)}<br>Longitude: \${lng.toFixed(5)}\`;
+          `<b>My location (destination)</b><br>Latitude: ${lat.toFixed(5)}<br>Longitude: ${lng.toFixed(5)}` : 
+          `<b>Destination</b><br>Latitude: ${lat.toFixed(5)}<br>Longitude: ${lng.toFixed(5)}`;
         destMarker.bindPopup(popupContent).openPopup();
         
         destMarker.on('dragend', () => {
           const pos = destMarker.getLatLng();
-          destInput.value = \`\${pos.lat.toFixed(5)},\${pos.lng.toFixed(5)}\`;
+          destInput.value = `${pos.lat.toFixed(5)},${pos.lng.toFixed(5)}`;
           updateButtons();
         });
       }
@@ -492,12 +479,12 @@ export default function MapScreen() {
       }
       
       // Handle coordinate format
-      if (startInput.value.trim().match(/^-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?$/)) {
+      if (startInput.value.trim().match(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)) {
         const [lat, lng] = startInput.value.trim().split(',').map(Number);
         setMarker(lat, lng, 'start', false);
       } else if (startInput.value.trim()) {
         // Geocode the address
-        const url = \`https://api.geoapify.com/v1/geocode/search?text=\${encodeURIComponent(startInput.value.trim())}&apiKey=\${GEOAPIFY_KEY}\`;
+        const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(startInput.value.trim())}&apiKey=${GEOAPIFY_KEY}`;
         fetch(url)
           .then(r => r.json())
           .then(data => {
@@ -517,12 +504,12 @@ export default function MapScreen() {
       }
       
       // Handle coordinate format
-      if (destInput.value.trim().match(/^-?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?$/)) {
+      if (destInput.value.trim().match(/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/)) {
         const [lat, lng] = destInput.value.trim().split(',').map(Number);
         setMarker(lat, lng, 'dest', false);
       } else if (destInput.value.trim()) {
         // Geocode the address
-        const url = \`https://api.geoapify.com/v1/geocode/search?text=\${encodeURIComponent(destInput.value.trim())}&apiKey=\${GEOAPIFY_KEY}\`;
+        const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(destInput.value.trim())}&apiKey=${GEOAPIFY_KEY}`;
         fetch(url)
           .then(r => r.json())
           .then(data => {
@@ -544,6 +531,7 @@ export default function MapScreen() {
       if (startMarker && destMarker) {
         const startPos = startMarker.getLatLng();
         const destPos = destMarker.getLatLng();
+        
         // Remember if start was current location
         const wasCurrentLocation = isUsingCurrentLocation;
         
@@ -562,15 +550,15 @@ export default function MapScreen() {
       if (!startMarker) {
         // First click sets start
         setMarker(e.latlng.lat, e.latlng.lng, 'start', false);
-        startInput.value = \`\${e.latlng.lat.toFixed(5)},\${e.latlng.lng.toFixed(5)}\`;
+        startInput.value = `${e.latlng.lat.toFixed(5)},${e.latlng.lng.toFixed(5)}`;
       } else if (!destMarker) {
         // Second click sets destination
         setMarker(e.latlng.lat, e.latlng.lng, 'dest', false);
-        destInput.value = \`\${e.latlng.lat.toFixed(5)},\${e.latlng.lng.toFixed(5)}\`;
+        destInput.value = `${e.latlng.lat.toFixed(5)},${e.latlng.lng.toFixed(5)}`;
       } else {
         // Subsequent clicks update start
         setMarker(e.latlng.lat, e.latlng.lng, 'start', false);
-        startInput.value = \`\${e.latlng.lat.toFixed(5)},\${e.latlng.lng.toFixed(5)}\`;
+        startInput.value = `${e.latlng.lat.toFixed(5)},${e.latlng.lng.toFixed(5)}`;
       }
     });
 
@@ -595,7 +583,7 @@ export default function MapScreen() {
         routeInfo.classList.remove('card-minimized');
       }
       
-      const url = \`https://api.geoapify.com/v1/routing?waypoints=\${s.lat},\${s.lng}|\${d.lat},\${d.lng}&mode=drive&apiKey=\${GEOAPIFY_KEY}\`;
+      const url = `https://api.geoapify.com/v1/routing?waypoints=${s.lat},${s.lng}|${d.lat},${d.lng}&mode=drive&apiKey=${GEOAPIFY_KEY}`;
       
       fetch(url)
         .then(r => r.json())
@@ -630,7 +618,7 @@ export default function MapScreen() {
             const timeMin = Math.round(props.time / 60);
             
             // Display route info
-            routeInfo.innerHTML = \`<b>Distance:</b> \${distance} km<br><b>Time:</b> \${timeMin} min\`;
+            routeInfo.innerHTML = `<b>Distance:</b> ${distance} km<br><b>Time:</b> ${timeMin} min`;
             routeInfo.style.display = 'block';
             
             // Extract navigation steps if available
@@ -665,7 +653,7 @@ export default function MapScreen() {
       if (navigator.userAgent.match(/Android|iPhone|iPad|iPod/i)) {
         const s = startMarker.getLatLng();
         const d = destMarker.getLatLng();
-        const url = \`https://www.google.com/maps/dir/?api=1&origin=\${s.lat},\${s.lng}&destination=\${d.lat},\${d.lng}&travelmode=driving\`;
+        const url = `https://www.google.com/maps/dir/?api=1&origin=${s.lat},${s.lng}&destination=${d.lat},${d.lng}&travelmode=driving`;
         window.open(url, '_blank');
       } else {
         // Start step by step navigation
@@ -679,16 +667,16 @@ export default function MapScreen() {
       
       const step = navSteps[idx];
       const instruction = step.instruction || "Continue on route";
-      const distance = step.distance ? \`\${step.distance} m\` : "";
+      const distance = step.distance ? `${step.distance} m` : "";
       
-      routeInfo.innerHTML = \`
-        <b>Step \${idx+1}/\${navSteps.length}</b><br>
-        \${instruction}<br>
-        \${distance ? \`Distance: \${distance}\` : ""}
+      routeInfo.innerHTML = `
+        <b>Step ${idx+1}/${navSteps.length}</b><br>
+        ${instruction}<br>
+        ${distance ? `Distance: ${distance}` : ""}
         <div style="margin-top:8px">
-          <button onclick="showNavStep(\${idx+1 < navSteps.length ? idx+1 : 0})">Next</button>
+          <button onclick="showNavStep(${idx+1 < navSteps.length ? idx+1 : 0})">Next</button>
         </div>
-      \`;
+      `;
       
       if (step.location) {
         map.setView([step.location[1], step.location[0]], 17);
@@ -721,7 +709,7 @@ export default function MapScreen() {
       if (weatherTimer) clearTimeout(weatherTimer);
       
       // OpenMeteo API URL
-      const url = \`https://api.open-meteo.com/v1/forecast?latitude=\${lat}&longitude=\${lng}&current=temperature_2m,relative_humidity_2m,rain,weather_code,wind_speed_10m&timezone=auto\`;
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,relative_humidity_2m,rain,weather_code,wind_speed_10m&timezone=auto`;
       
       fetch(url)
         .then(response => response.json())
@@ -760,13 +748,13 @@ export default function MapScreen() {
             
             // Set weather data
             weatherLocation.textContent = 'Current Weather';
-            weatherTemp.textContent = \`\${temp}°C\`;
+            weatherTemp.textContent = `${temp}°C`;
             weatherDesc.textContent = weatherDescriptions[weatherCode] || 'Unknown';
-            weatherIcon.innerHTML = \`<div class="weather-icon">\${weatherIcons[weatherCode] || '🌡️'}</div>\`;
-            weatherExtra.textContent = \`Humidity: \${humidity}%, Wind: \${windSpeed} km/h\`;
+            weatherIcon.innerHTML = `<div class="weather-icon">${weatherIcons[weatherCode] || '🌡️'}</div>`;
+            weatherExtra.textContent = `Humidity: ${humidity}%, Wind: ${windSpeed} km/h`;
             
             // Get location name using reverse geocoding
-            fetch(\`https://api.geoapify.com/v1/geocode/reverse?lat=\${lat}&lon=\${lng}&apiKey=\${GEOAPIFY_KEY}\`)
+            fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${GEOAPIFY_KEY}`)
               .then(res => res.json())
               .then(geoData => {
                 if (geoData.features && geoData.features.length > 0) {
@@ -827,13 +815,13 @@ export default function MapScreen() {
       const routeActions = document.querySelector('.route-actions');
       if (routeActions) {
         const infoDiv = document.createElement('div');
-        infoDiv.innerHTML = \`
+        infoDiv.innerHTML = `
           <div style="margin-top: 12px; padding: 10px; background: #f0f4ff; border-radius: 8px; font-size: 12px;">
             <p style="margin: 0; line-height: 1.4;">
               <b>Tip:</b> Right-click on map to add a location. Click any green pin to view details and rate the location.
             </p>
           </div>
-        \`;
+        `;
         routeActions.parentNode.insertBefore(infoDiv, routeActions.nextSibling);
       }
     });
@@ -976,158 +964,7 @@ export default function MapScreen() {
         debugOutput.removeChild(debugOutput.firstChild);
       }
     }
-
-    // Usage example:
-    // showDebug("Loading map...");
-    // showDebug({"lat": 123, "lng": 456});
+    
   </script>
 </body>
 </html>
-  `;
-
-  // Request and get location
-  useEffect(() => {
-    (async () => {
-      try {
-        let { status } = await Location.requestForegroundPermissionsAsync();
-        if (status !== 'granted') {
-          setLocationErrorMsg('Permission to access location was denied');
-          return;
-        }
-
-        let location = await Location.getCurrentPositionAsync({
-          accuracy: Location.Accuracy.Balanced
-        });
-        
-        setLocation({
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude
-        });
-        
-        // Send location to WebView
-        if (webViewRef.current) {
-          const locationData = {
-            type: 'currentLocation',
-            latitude: location.coords.latitude,
-            longitude: location.coords.longitude
-          };
-          webViewRef.current.injectJavaScript(
-            `(function() {
-              window.userLocation = ${JSON.stringify(locationData)};
-              if (typeof handleNativeLocation === 'function') {
-                handleNativeLocation(${JSON.stringify(locationData)});
-              }
-              true;
-            })();`
-          );
-        }
-      } catch (error) {
-        console.error('Error getting location:', error);
-        setLocationErrorMsg('Error getting location');
-      }
-    })();
-  }, []);
-
-  // Handle messages
-  const handleWebViewMessage = (event: any) => {
-    try {
-      const data = JSON.parse(event.nativeEvent.data);
-      
-      if (data.type === 'openLocationDetail') {
-        // Navigate to location detail screen with parameters
-        router.push({
-          pathname: '/location-detail',
-          params: {
-            lat: data.latitude,
-            lng: data.longitude,
-            name: data.name || 'Location Details'
-          }
-        });
-      } else if (data.type === 'requestLocation') {
-        // Handle location request from WebView
-        getLocationForWebView(data.purpose || 'general');
-      }
-    } catch (error) {
-      console.error('Error parsing WebView message:', error);
-    }
-  };
-
-  // Get location and pass to WebView
-  const getLocationForWebView = async (purpose: string) => {
-    try {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        sendLocationErrorToWebView('Permission to access location was denied', purpose);
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Balanced
-      });
-      
-      // Send location to WebView
-      if (webViewRef.current) {
-        const locationData = {
-          type: 'locationResult',
-          purpose: purpose,
-          success: true,
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude
-        };
-        
-        const jsCode = `
-          window.receiveLocationFromApp(${JSON.stringify(locationData)});
-          true;
-        `;
-        
-        webViewRef.current.injectJavaScript(jsCode);
-      }
-    } catch (error) {
-      console.error('Error getting location:', error);
-      sendLocationErrorToWebView('Failed to get location', purpose);
-    }
-  };
-
-  // Send error to WebView
-  const sendLocationErrorToWebView = (errorMsg: string, purpose: string) => {
-    if (webViewRef.current) {
-      const errorData = {
-        type: 'locationResult',
-        purpose: purpose,
-        success: false,
-        error: errorMsg
-      };
-      
-      const jsCode = `
-        window.receiveLocationFromApp(${JSON.stringify(errorData)});
-        true;
-      `;
-      
-      webViewRef.current.injectJavaScript(jsCode);
-    }
-  };
-
-  return (
-    <View style={styles.container}>
-      <WebView
-        ref={webViewRef}
-        source={{ html: htmlContent }}
-        style={styles.webview}
-        originWhitelist={['*']}
-        javaScriptEnabled
-        domStorageEnabled
-        startInLoadingState
-        onMessage={handleWebViewMessage}
-        geolocationEnabled={true}
-        mixedContentMode="always"
-        allowFileAccess={true}
-        allowUniversalAccessFromFileURLs={true}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1 },
-  webview: { flex: 1 }
-});
